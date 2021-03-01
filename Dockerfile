@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.8-alpine
 
 WORKDIR /app
 
@@ -12,4 +12,4 @@ ADD blockchain.py /app
 
 EXPOSE 5000
 
-CMD ["python", "blockchain.py", "--port", "5000"]
+CMD ["python", "blockchain.py"]

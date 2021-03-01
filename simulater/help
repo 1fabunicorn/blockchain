@@ -1,0 +1,5 @@
+Blockchain Simulator help:
+    Mine n
+        Set n nodes to mine and submit blocks
+    Transact n
+        create n random transactions
