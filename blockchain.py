@@ -112,6 +112,7 @@ class Blockchain:
             'timestamp': time(),
             'transactions': self.current_transactions,
             'proof': proof,
+            # 'hash' : self.hash(self.chain[-1]) or previous_hash,
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
         }
 
@@ -130,12 +131,9 @@ class Blockchain:
         :param amount: Amount
         :return: The index of the Block that will hold this transaction
         """
-        self.current_transactions.append({
-            'sender': sender,
-            'recipient': recipient,
-            'amount': amount,
-        })
 
+        tx = {'sender': sender, 'recipient': recipient, 'amount': amount}
+        self.current_transactions.append(tx)
         return self.last_block['index'] + 1
 
     @property
@@ -240,7 +238,6 @@ def new_transaction():
 
     # Create a new Transaction
     index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
-
     response = {'message': f'Transaction will be added to Block {index}'}
     return jsonify(response), 201
 
