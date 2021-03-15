@@ -5,7 +5,7 @@ import requests
 from concurrent.futures import ThreadPoolExecutor
 from time import sleep
 
-num_of_nodes = 3
+num_of_nodes = 15
 docker_ip_offset = 1
 
 print("Creating {} blockchain node containers".format(num_of_nodes))
@@ -22,10 +22,6 @@ data = {"nodes": node_ips}
 def exit_():
     print("[Blockchain Simulation] Exiting, stopping containers")
     subprocess.call("docker stop $(docker ps -q --filter ancestor=blockchain)", shell=True)
-
-
-def help_():
-    print("")
 
 
 def register_node(node_url):
@@ -84,8 +80,6 @@ while True:
     if command.split()[0].lower()[0] == "q":
         exit_()
         quit(0)
-    if command.split()[0].lower()[0] == "h":
-        help_()
     if command.split()[0].lower()[0] == "m":
         mine(int(command.split()[1]))
     if command.split()[0].lower()[0] == "c":

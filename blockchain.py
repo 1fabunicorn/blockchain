@@ -33,7 +33,6 @@ class Blockchain:
         else:
             raise ValueError('Invalid URL')
 
-
     def valid_chain(self, chain):
         """
         Determine if a given blockchain is valid
@@ -122,17 +121,18 @@ class Blockchain:
         self.chain.append(block)
         return block
 
-    def new_transaction(self, sender, recipient, amount):
+    def new_transaction(self, sender, recipient, amount, added_data):
         """
         Creates a new transaction to go into the next mined Block
 
         :param sender: Address of the Sender
         :param recipient: Address of the Recipient
         :param amount: Amount
+        :param added_data: extra data to add to the tx
         :return: The index of the Block that will hold this transaction
         """
 
-        tx = {'sender': sender, 'recipient': recipient, 'amount': amount}
+        tx = {'sender': sender, 'recipient': recipient, 'amount': amount, 'added_data': added_data}
         self.current_transactions.append(tx)
         return self.last_block['index'] + 1
 
